@@ -5,6 +5,7 @@ import configparser
 from hermes_python.hermes import Hermes
 from hermes_python.ffi.utils import MqttOptions
 from hermes_python.ontology import *
+import io
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
@@ -41,7 +42,7 @@ def action_wrapper(hermes, intentMessage, conf):
         sentence = now.strftime("On est le %A %d %B %Y")
         hermes.publish_end_session(intentMessage.session_id, sentence)
     except:
-        ErrMess="snips-snips-Heure-Date - command KO - askDayCakp59"
+        ErrMess="snips-snips-Heure-Date - command KO - askDay"
         hermes.publish_end_session(intentMessage.session_id,ErrMess)
 
 if __name__ == "__main__":
