@@ -41,12 +41,12 @@ def action_wrapper(hermes, intentMessage, conf):
         sentence = now.strftime("On est le %A %d %B %Y")
         hermes.publish_end_session(intentMessage.session_id, sentence)
     except:
-        ErrMess="snips-InternetRadio - command KO - askDayCakp59"
+        ErrMess="snips-snips-Heure-Date - command KO - askDayCakp59"
         hermes.publish_end_session(intentMessage.session_id,ErrMess)
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
-        h.subscribe_intent("cakp59:askDayCakp59", subscribe_intent_callback) \
+        h.subscribe_intent("cakp59:askDay", subscribe_intent_callback) \
          .start()
 
