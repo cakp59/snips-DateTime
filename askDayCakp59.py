@@ -38,9 +38,9 @@ def action_wrapper(hermes, intentMessage, conf):
     import datetime
     try:
         now = datetime.datetime.now()
-        sentence = now.strftime("On est le %d %m %Y")
+        sentence = now.strftime("On est le %A %d %B %Y")
         hermes.publish_end_session(intentMessage.session_id, sentence)
-   except:
+    except:
         ErrMess="snips-InternetRadio - command KO - askDayCakp59"
         hermes.publish_end_session(intentMessage.session_id,ErrMess)
 
