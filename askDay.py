@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import configparser
+
 from hermes_python.hermes import Hermes
 from hermes_python.ffi.utils import MqttOptions
 from hermes_python.ontology import *
@@ -37,17 +38,13 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details.
     """
     import datetime
-    try:
-        now = datetime.datetime.now()
-        sentence = now.strftime("On est le %A %d %B %Y")
-        hermes.publish_end_session(intentMessage.session_id, sentence)
-    except:
-        ErrMess="snips-snips-Heure-Date - command KO - askDay"
-        hermes.publish_end_session(intentMessage.session_id,ErrMess)
+
+    now = datetime.datetime.now()
+    sentence = now.strftime("On est le %A %d %B %Y")
+    hermes.publish_end_session(intentMessage.session_id, sentence)
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
         h.subscribe_intent("cakp59:askDay", subscribe_intent_callback) \
          .start()
-
