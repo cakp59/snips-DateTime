@@ -40,9 +40,10 @@ def action_wrapper(hermes, intentMessage, conf):
 
     lang="je ne sais pas"
     lang=conf['secret']['lang']
-    commandLocation=""
+    commandLocation="Pas de ville sélectionnée"
     if len(intentMessage.slots.Town)>0:
-        commandLocation=intentMessage.slots.Town
+        commandLocation=intentMessage.slots.Town.first().raw_value
+    hermes.publish_end_session(intentMessage.session_id, commandLocation)
         
     if lang=='FR':
         now = datetime.datetime.now()
