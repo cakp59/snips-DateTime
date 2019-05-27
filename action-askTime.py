@@ -38,13 +38,12 @@ def action_wrapper(hermes, intentMessage, conf):
     """
     import datetime
 
-    lang="je ne sais pas"
+    lang="No langage"
     lang=conf['secret']['lang']
     commandLocation="Pas de ville sélectionnée"
     if len(intentMessage.slots.Town)>0:
-        commandLocation=intentMessage.slots.Town.first().raw_value
-    hermes.publish_end_session(intentMessage.session_id, commandLocation)
-        
+        commandLocation=intentMessage.slots.Town.first().value 
+
     if lang=='FR':
         now = datetime.datetime.now()
         sentence = now.strftime("Il est %H:%M")
@@ -54,7 +53,7 @@ def action_wrapper(hermes, intentMessage, conf):
         sentence = now.strftime("It is %H:%M")
         hermes.publish_end_session(intentMessage.session_id, sentence)
     else:
-        hermes.publish_end_session(intentMessage.session_id, "Language not yet managed")
+        hermes.publish_end_session(intentMessage.session_id, "Language not yet implemented")
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
