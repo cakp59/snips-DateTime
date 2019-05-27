@@ -37,13 +37,9 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details.
     """
     import datetime
-    try:
-        now = datetime.datetime.now()
-        sentence = now.strftime("Il est %H:%M")
-        hermes.publish_end_session(intentMessage.session_id, sentence)
-    except:
-        ErrMess="snips-snips-Heure-Date - command KO - askTime"
-        hermes.publish_end_session(intentMessage.session_id,ErrMess)
+    now = datetime.datetime.now()
+    sentence = now.strftime("Il est %H:%M")
+    hermes.publish_end_session(intentMessage.session_id, sentence)
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
