@@ -39,6 +39,9 @@ def action_wrapper(hermes, intentMessage, conf):
     """
     import datetime
 
+    lang="No langage"
+    lang=conf['secret']['lang']
+
     now = datetime.datetime.now()
     if lang=='FR':
         sentence = now.strftime("On est le %A %d %B %Y")
