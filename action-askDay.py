@@ -38,7 +38,9 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details.
     """
     import datetime
-
+    import locale
+    
+    locale.setlocale( locale.LC_ALL, 'fr_FR')
     lang="No langage"
     lang=conf['secret']['lang']
 
