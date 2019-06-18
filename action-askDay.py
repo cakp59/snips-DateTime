@@ -39,18 +39,20 @@ def action_wrapper(hermes, intentMessage, conf):
     """
     import datetime
     import locale
-    
-    locale.setlocale( locale.LC_ALL, 'fr_FR')
+
     lang="No langage"
     lang=conf['secret']['lang']
-
-    now = datetime.datetime.now()
     if lang=='FR':
-        sentence = now.strftime("On est le %A %d %B %Y")
+        MonthList=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre']
+        DayList=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
+        now = datetime.datetime.now()
+        monthNumber = now.date().month
+        dayNumber=now.isoweekday()
+        sentence = "On est le " + DayList[dayNumber-1] + " " + str(dayNumber) + " "+ MonthList[monthNumber-1] + " " + now.strftime$
         hermes.publish_end_session(intentMessage.session_id, sentence)
     elif lang=='EN':
         now = datetime.datetime.now()
-        sentence = now.strftime("The dte is %A %d %B %Y")
+        sentence = now.strftime("The date is %A %d %B %Y")
         hermes.publish_end_session(intentMessage.session_id, sentence)
     else:
         hermes.publish_end_session(intentMessage.session_id, "Language not yet implemented")
